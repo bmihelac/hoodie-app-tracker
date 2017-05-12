@@ -21,3 +21,10 @@ hoodie.account.get(['session', 'username'], {local: true})
       hideSignedIn()
     }
   })
+
+
+hoodie.account.hook.after('signout', function (options) {
+  console.log('add item on signout hook')
+  console.log('expected that it would be in cleared database')
+  hoodie.store.add({amount: 1, note: 'on signout hook'})
+})
