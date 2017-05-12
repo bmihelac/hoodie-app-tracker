@@ -165,7 +165,10 @@ document.querySelector('[data-action="show-password-reset"]').addEventListener('
  */
 document.querySelector('[data-action=signout]').addEventListener('click', function (event) {
   event.preventDefault()
-  hoodie.account.signOut()
+  hoodie.account.signOut().then(function() {
+    console.log('we have clear database here')
+    hoodie.store.add({amount: 1, note: 'on signout hook'})
+  })
 
   .then(setHashState)
 })
